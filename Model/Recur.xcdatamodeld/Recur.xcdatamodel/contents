@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Checkpoint" representedClassName="Checkpoint" parentEntity="Entity" syncable="YES">
+        <attribute name="completionState" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="label" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="pageId" optional="YES" attributeType="String"/>
+        <attribute name="startPageId" optional="YES" attributeType="String"/>
+        <relationship name="lesson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lesson" inverseName="checkpoints" inverseEntity="Lesson"/>
+    </entity>
+    <entity name="Choicebank" representedClassName="Choicebank" parentEntity="Page" syncable="YES">
+        <relationship name="page" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Page" inverseName="choicebanks" inverseEntity="Page"/>
+    </entity>
+    <entity name="Curriculum" representedClassName="Curriculum" parentEntity="Entity" syncable="YES">
+        <attribute name="descriptionString" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="units" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Unit" inverseName="curriculum" inverseEntity="Unit"/>
+    </entity>
+    <entity name="Entity" representedClassName="Entity" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="timeCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="Lesson" representedClassName="Lesson" parentEntity="Entity" syncable="YES">
+        <attribute name="descriptionString" optional="YES" attributeType="String"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="checkpoints" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Checkpoint" inverseName="lesson" inverseEntity="Checkpoint"/>
+        <relationship name="pages" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Page" inverseName="lesson" inverseEntity="Page"/>
+        <relationship name="unit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Unit" inverseName="lessons" inverseEntity="Unit"/>
+    </entity>
+    <entity name="Page" representedClassName="Page" parentEntity="Entity" syncable="YES">
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rawBody" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="choicebanks" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Choicebank" inverseName="page" inverseEntity="Choicebank"/>
+        <relationship name="lesson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lesson" inverseName="pages" inverseEntity="Lesson"/>
+    </entity>
+    <entity name="Photo" representedClassName="Photo" parentEntity="Entity" syncable="YES">
+        <attribute name="bannerURL" optional="YES" attributeType="String"/>
+        <attribute name="iconURL" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Profile" representedClassName="Profile" parentEntity="Entity" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="photoId" optional="YES" attributeType="String"/>
+        <attribute name="privateFirstName" optional="YES" attributeType="String"/>
+        <attribute name="privateLastName" optional="YES" attributeType="String"/>
+        <attribute name="privatePhotoUrl" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Unit" representedClassName="Unit" parentEntity="Entity" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="curriculum" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Curriculum" inverseName="units" inverseEntity="Curriculum"/>
+        <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Lesson" inverseName="unit" inverseEntity="Lesson"/>
+    </entity>
+    <elements>
+        <element name="Checkpoint" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Choicebank" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Curriculum" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Entity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Lesson" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Page" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Photo" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Profile" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Unit" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>
